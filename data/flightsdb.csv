@@ -1,0 +1,74 @@
+﻿Flight,Departure,Arrival,DepartureTime,ArrivalTime,Schedule,Price,Days
+Scoot 980,Singapore,Hong Kong,6:05,9:45,"1,2,3,4,5,6,7",281,0
+Singapore Airlines 882,Singapore,Hong Kong,8:25,12:25,"1,2,3,4,5,6,7",334,0
+Singapore Airlines 894,Singapore,Hong Kong,1:05,5:05,"1,2,3,4,5,6,7",334,0
+Hong Kong Express 781,Singapore,Hong Kong,6:00,10:05,2,305,0
+Scoot 840,Singapore,Incheon,1:25,8:55,1,355,0
+Korean Air 644,Singapore,Incheon,22:35,5:45,7,657,1
+Asiana Airlines 752,Singapore,Incheon,23:30,6:50,"2,3,5,7",459,1
+Singapore Airlines 608,Singapore,Incheon,1:25,8:50,"3,5,7",832,0
+Korean Air 646,Singapore,Incheon,1:30,8:50,"2,5,7",569,0
+Air Premia 6632,Singapore,Incheon,3:20,10:45,"2,5,7",456,0
+Singapore Airlines 600,Singapore,Incheon,17:30,0:50,"3,4,5",284,1
+Korean Air 346,Singapore,Incheon,2:30,9:25,"1,2,4,7",875,0
+Asiana Airlines 384,Singapore,Incheon,20:20,3:45,"4,7",235,1
+Korean Air 354,Singapore,Incheon,16:50,23:40,"2,4,5,6",945,0
+Singapore Airlines 600,Singapore,Incheon,8:05,15:30,"2,4,6",657,0
+Qantas 82,Singapore,Sydney,20:30,7:30,"1,2,3,4,5,6,7",430,1
+Singapore Airlines 241,Singapore,Sydney,7:05,17:55,"1,2,3,4,5,6,7",543,0
+Singapore Airlines 231,Singapore,Sydney,0:45,11:50,"1,2,3,4,5,6,7",543,0
+Singapore Airlines 211,Singapore,Sydney,10:30,21:20,"1,2,3,4,5,6,7",543,0
+Singapore Airlines 241,Singapore,New York,11:50,16:55,"1,2,3,4,5,6,7",2627,0
+Singapore Airlines 26,Singapore,New York,23:55,11:15,"1,2,3,4,5,6,7",2001,1
+Japan Airlines 712,Singapore,Tokyo,8:20,16:05,"1,2,4,6",691,0
+Singapore Airlines 12,Singapore,Tokyo,9:20,17:05,"1,3,5,6",582,0
+Singapore Airlines 634,Singapore,Tokyo,14:05,21:40,"2,4,7",530,0
+All Nippon Airways 844,Singapore,Tokyo,22:20,5:55,"4,7",490,1
+Japan Airlines 36,Singapore,Tokyo,22:25,5:55,"3,5,6",539,1
+Singapore Airlines 638,Singapore,Tokyo,23:55,7:30,"1,2,3,4,5,6,7",693,1
+Qantas 46,Singapore,Melbourne,19:40,6:10,"1,4,6",419,1
+Singapore Airline 227,Singapore,Melbourne,21:50,8:15,"1,2,3,4,5,6,7",567,1
+Jetstar Airways 8,Singapore,Melbourne,21:25,7:45,"1,2,3,4,5,6,7",328,1
+Singapore Airlines 217,Singapore,Melbourne,11:00,21:25,"1,3,4,5,6,7",624,0
+Singapore Airlines 237,Singapore,Melbourne,0:25,10:50,"1,2,3,4,5,6,7",523,0
+Singapore Airlines 28,Singapore,Vancouver,9:15,7:30,"1,2,4,6",453,0
+Air Canada 2316,Singapore,Vancouver,9:15,7:30,"1,3,5,6",654,0
+Scoot 610,Singapore,Bangkok,17:15,18:40,"1,3,5",200,0
+Scoot 302,Singapore,Ho Chi Minh,16:10,17:15,"2,4,6",189,0
+Jetstar 651,Singapore,Manila,16:35,20:15,"3,4,5",227,0
+Singapore Airlines 52,Singapore ,Manchester,1:30,7:55,"1,2,3,4,5,6,7",1394,0
+Singapore Airlines 637,Tokyo,Singapore,9:40,16:30,"1,2,3,4,5,6,7",724,0
+All Nippon Airways 841,Tokyo,Singapore,10:55,17:40,"4,7",490,0
+Japan Airlines 37,Tokyo,Singapore,12:50,19:40,"3,5,6",691,0
+Japan Airlines 711,Tokyo,Singapore,18:00,0:50,"1,2,4,6",578,1
+Singapore Airlines 11,Tokyo,Singapore,19:00,1:40,"2,4,6,7",689,1
+Singapore Airlines 635,Tokyo,Singapore,22:55,5:15,"2,4,7",650,1
+Singapore Airlines 218,Melbourne,Singapore,0:35,5:15,"1,2,3,4,5,6,7",592,0
+Qantas 35,Melbourne,Singapore,0:10,17:05,"2,4,6",442,0
+Jetstar 7,Melbourne,Singapore,13:25,18:15,"3,5",321,0
+Scoot 19,Melbourne,Singapore,19:40,0:35,"1,2,3,4,5,6,7",335,1
+Singapore Airlines 29,Vancouver,Singapore,13:15,22:05,"2,4,7",876,1
+Air Canada 2317,Vancouver,Singapore,13:15,22:05,"4,7",987,1
+Singapore Airlines 27,Vancouver,Singapore,13:15,22:05,"3,5,6",1024,1
+Singapore Airlines 51,Manchester,Singapore,11:00,7:55,"2,3,4",805,1
+Scoot 981,Hong Kong,Singapore,10:45,14:24,"1,2,3,4,5,6,7",324,0
+Hong Kong Express 780,Hong Kong,Singapore,12:35,16:35,2,533,0
+Singapore Airlines 883,Hong Kong,Singapore,14:10,18:10,"1,2,3,4,5,6,7",533,0
+Singapore Airlines 895,Hong Kong,Singapore,18:50,22:50,"1,2,3,4,5,6,7",360,0
+Korean Air 643,Incheon,Singapore,14:35,20:20,7,753,0
+Scoot 841,Incheon,Singapore,10:30,16:15,1,302,0
+Singapore Airlines 607,Incheon,Singapore,10:30,16:15,"3,5,7",824,0
+Asiana Airline 751,Incheon,Singapore,16:20,21:55,"2,3,5,7",589,0
+Singapore Airlines 601,Incheon,Singapore,16:35,22:20,"2,4,6",712,0
+Korean Air 8383,Incheon,Singapore,12:30,17:45,"4,7",285,0
+Korean Air 353,Incheon,Singapore,3:55,9:05,"2,3,4",645,0
+Air Premia 6631,Incheon,Singapore,6:30,11:50,"1,3,5",1291,0
+Korean Air 645,Incheon,Singapore,18:35,0:10,"1,4,6",765,1
+Korean Air 624,Manila,Incheon,22:00,3:20,"1,3",399,1
+Asiana Airlines 742,Bangkok,Incheon,19:40,2:40,"1,2,6",321,1
+Korean Air 684,Ho Chi Minh,Incheon,18:10,1:10,"2,5,7",426,1
+Singapore Airlines 212,Sydney,Singapore,9:05,14:15,"1,2,3,4,5,6,7",558,0
+Qantas 81,Sydney,Singapore,11:20,16:45,"1,2,3,4,5,6,7",439,0
+Scoot 13,Sydney,Singapore,21:45,3:10,"1,2,3,4,5,6,7",332,1
+Singapre Airlines 25,New York,Singapore,20:15,6:50,"1,2,3,4,5,6,7",2543,2
+Singapore Airlines 23,New York,Singapore,21:40,5:20,"1,2,3,4,5,6,7",2552,2
