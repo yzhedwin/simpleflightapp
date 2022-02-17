@@ -30,13 +30,14 @@ def config(filename='database.ini', section='postgresql'):
 class Ui:
     def __init__(self):
         self.command_list = 'Commands Available:\n' + \
-                       'exit: Exits the program\n' + \
-                       'set destination: Set where you want to travel to. Must be a name of an airport\n' + \
-                       'set departure: Sets the range of date that you wish to depart\n' + \
-                       'direct: Query the database for direct flights to destination during desired departure ' \
-                       'date\n' + \
-                       'indirect: Query the database for indirect flights to destination during desired ' \
-                       'departure date '
+                            'exit: Exits the program\n' + \
+                            'set destination: Set where you want to travel to. Must be a name of an airport\n' + \
+                            'set source: Set where you want to travel from. Must be a name of an airport\n' + \
+                            'set departure: Sets the range of date that you wish to depart\n' + \
+                            'direct: Query the database for direct flights to destination during desired departure ' \
+                            'date\n' + \
+                            'indirect: Query the database for indirect flights to destination during desired ' \
+                            'departure date\n' + 'drop table: Removes a table from database'
 
     def start_message(self):
         print("Welcome to a simple flight AI, my name is DeeBee")
@@ -57,8 +58,9 @@ class Commands:
         self.depart_end = '10/08/2022'
         self.depart_start = '14/08/2022'
         self.destination = "'Incheon'"
+        self.source = "'Singapore'"
 
-    def parse(self, database, u,  userinput):
+    def parse(self, database, u, userinput):
         if userinput == 'exit':
             Ui.exit_message()
             self.isExit = True
@@ -68,15 +70,43 @@ class Commands:
         elif userinput == 'help':
             Ui.help_message(u)
         elif userinput == 'set destination':
+            sql = "SELECT departure from flights UNION SELECT arrival from flights"
+            database.cur.execute(sql)
+            print("List of Airports available:")
+            df = pd.DataFrame(database.cur.fetchall())
+            print(df.rename(columns={df.columns[0]: "Airports"}))
             self.destination = set_destination()
+            print("Source set to:" + self.destination)
+            database.drop_table('direct_flights')
+        elif userinput == 'set source':
+            sql = "SELECT departure from flights UNION SELECT arrival from flights"
+            database.cur.execute(sql)
+            print("List of Airports available:")
+            df = pd.DataFrame(database.cur.fetchall())
+            print(df.rename(columns={df.columns[0]: "Airports"}))
+            self.source = set_source()
+            print("Source set to:" + self.source)
+            database.drop_table('direct_flights')
         elif userinput == 'set departure':
             self.depart_end, self.depart_start = set_departure()
+        elif userinput == 'drop table':
+            print("Specify which table to drop")
+            database.drop_table(input())
+            print("dropped")
 
 
 class Database:
 
     def __init__(self):
         self.data = pd.read_csv(CSV_FILE_PATH)
+        self.cols = "Flight text," \
+                    "Departure text," \
+                    "Arrival text," \
+                    "DepartureTime time," \
+                    "ArrivalTime time," \
+                    "Schedule text," \
+                    "Price integer," \
+                    "Days integer"
         params = config()
         # connect to the PostgreSQL server
         print('Connecting to the PostgreSQL database...')
@@ -99,7 +129,7 @@ class Database:
             print("'{}' Database already exist".format(self.table))
         else:
             print("'{}' Database not exist.".format(self.table))
-            self.create_table()
+            self.create_table(self.table)
             self.csv_to_psql()
             print("Creating new database...")
             self.conn.commit()
@@ -117,20 +147,10 @@ class Database:
 
     def query_table(self, sql):
         self.cur.execute(sql)
-        for i in self.cur.fetchall():
-            print(i)
+        return pd.DataFrame(self.cur.fetchall())
 
-    def create_table(self):
-        cols = "Flight text," \
-               "Departure text," \
-               "Arrival text," \
-               "DepartureTime time," \
-               "ArrivalTime time," \
-               "Schedule text," \
-               "Price integer," \
-               "Days integer"
-
-        sql = "CREATE TABLE " + self.table + " (" + cols + ")"
+    def create_table(self, table_name):
+        sql = "CREATE TABLE IF NOT EXISTS " + table_name + " " + '(' + self.cols + ')'
         self.cur.execute(sql)
 
     def csv_to_psql(self):
@@ -149,6 +169,7 @@ def runApp():
     D1 = Database()
     c = Commands()  # list of cmd query direct, query indirect, exit, newDeparture, newArrival
     u = Ui()
+    rename_col(D1)
     u.start_message()
     while not c.isExit:
         # D1.show_table_list()
@@ -157,26 +178,52 @@ def runApp():
     D1.close_connection()
 
 
+def rename_col(D1):
+    query = "Select * from flights"
+    df = D1.query_table(query)
+    df.rename(
+        columns={df.columns[0]: "Flights", df.columns[1]: "Departure", df.columns[2]: "Arrival",
+                 df.columns[3]: "DepartureTime",
+                 df.columns[4]: "ArrivalTime", df.columns[5]: "Schedule", df.columns[6]: "Price",
+                 df.columns[7]: "Days"}, inplace=True)
+
+
 def filter_direct(database, c):
-    print("Showing DIRECT flights from Singapore to Korea...")
+    print("Showing DIRECT flights from " + c.source + " to " + c.destination + " Sorted by PRICE")
     query_schedule = range_day(c.depart_start, c.depart_end)
     database.cur.execute("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';")
     list_db = database.cur.fetchall()
     if ('direct_flights',) in list_db:
         print("'{}' Database already exist".format('direct_flights'))
-    else:
-        query = "Create Table direct_flights As Select * from flights where (Departure = 'Singapore' AND Arrival = " + \
-                c.destination + ") AND " + query_schedule
+        database.drop_table('direct_flights')
+    database.create_table('direct_flights')
+    query = "Insert INTO direct_flights Select * from flights where (Departure = " + c.source + " AND Arrival " + "= " + c.destination + ") AND " + query_schedule
+    try:
         database.cur.execute(query)
         print("'{}' Database created".format('direct_flights'))
-    query = "Select * from direct_flights"
-    database.query_table(query)
+        query = "SELECT flight,departure,arrival, departuretime, arrivaltime,schedule,price FROM direct_flights ORDER BY price"
+        df = database.query_table(query)
+        df.rename(
+            columns={df.columns[0]: "Flights", df.columns[1]: "Departure", df.columns[2]: "Arrival",
+                     df.columns[3]: "DepartureTime",
+                     df.columns[4]: "ArrivalTime", df.columns[5]: "Schedule", df.columns[6]: "Price"}, inplace=True)
+        print(df)
+    except IndexError:
+        print("No flights found")
+    except psycopg2.ProgrammingError:
+        print("No results to fetch")
 
 
 def set_destination():
     print("Input desired destination by Airport Name")
-    destination = input()
+    destination = "'" + input() + "'"
     return destination
+
+
+def set_source():
+    print("Input current Airport")
+    source = "'" + input() + "'"
+    return source
 
 
 def set_departure():
