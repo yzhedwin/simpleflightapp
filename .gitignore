@@ -1,0 +1,15 @@
+# IDEA files
+/.idea/
+/out/
+/*.iml
+
+
+
+# MacOS custom attributes files created by Finder
+.DS_Store
+*.iml
+bin/
+
+# Data files
+data/*
+*.ini
